@@ -774,7 +774,7 @@
       .more-scroll { max-height: 55vh; }
       .profile-row { flex-direction: column; align-items: center; text-align: center; }
       .tags-row { justify-content: center; }
-      .contacts-row { flex-direction: column; align-items: flex-start; }
+      .contacts-row { flex-direction: column; align-items: flex-start; }\n      .contacts-actions { width: 100%; justify-content: flex-end; margin-top: 6px; }
       .title-bar-text { font-size: 11px !important; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 180px; }
       [role="menubar"] { overflow-x: auto; flex-wrap: nowrap !important; }
       .taskbar-btn { display: none; }
@@ -792,6 +792,74 @@
       .wmp-cover { width: 72px !important; height: 72px !important; }
       .wmp-vol { width: 80px !important; }
     }
+
+    .github-val {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: rgba(130, 180, 255, 0.95);
+      text-decoration: none;
+      transition: color 0.15s, text-shadow 0.15s;
+    }
+    .github-val:hover {
+      color: #ffffff;
+      text-shadow: 0 0 8px rgba(100, 180, 255, 0.8);
+      text-decoration: underline;
+    }
+    .github-val i {
+      font-size: 15px;
+    }
+
+    .contacts-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .github-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      height: 23px;
+      padding: 0 10px;
+      font-size: 12px;
+      font-family: inherit;
+      color: rgba(200, 220, 255, 0.9) !important;
+      text-decoration: none;
+      background: linear-gradient(to bottom, rgba(40,60,110,0.9), rgba(20,35,75,0.95));
+      border: 1px solid rgba(70,110,200,0.6);
+      border-radius: 3px;
+      box-shadow: inset 0 1px 0 rgba(120,160,255,0.2);
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s, color 0.15s, box-shadow 0.15s;
+    }
+    .github-btn:hover {
+      background: linear-gradient(to bottom, rgba(55,80,145,0.9), rgba(30,50,105,0.95));
+      border-color: rgba(100,150,255,0.7);
+      color: #ffffff !important;
+      box-shadow: 0 0 10px rgba(80,140,255,0.4), inset 0 1px 0 rgba(120,160,255,0.3);
+    }
+    .github-btn:active {
+      background: linear-gradient(to bottom, rgba(20,35,80,0.95), rgba(35,55,120,0.9));
+    }
+    .github-btn i {
+      font-size: 15px;
+    }
+
+    .github-tag {
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .github-tag:hover {
+      border-color: rgba(120, 170, 255, 0.8);
+      color: #ffffff;
+      box-shadow: 0 0 8px rgba(80, 150, 255, 0.5);
+      background: linear-gradient(to bottom, rgba(60,90,160,0.9), rgba(35,55,120,0.95));
+    }
+
   </style>
 </head>
 <body>
@@ -865,6 +933,7 @@
             <span class="win-tag">Linux</span>
             <span class="win-tag">LLM</span>
             <span class="win-tag">Ы</span>
+            <a href="https://github.com/KlevVid1" target="_blank" rel="noopener noreferrer" class="win-tag github-tag" title="GitHub — KlevVid1"><i class="ri-github-fill"></i> GitHub</a>
           </div>
         </div>
       </div>
@@ -888,8 +957,20 @@
             <span class="lbl">Telegram</span>
             <span class="val">@KlevVid</span>
           </div>
+          <div class="c-item">
+            <span class="lbl">GitHub</span>
+            <a href="https://github.com/KlevVid1" target="_blank" rel="noopener noreferrer" class="val github-val" title="GitHub — KlevVid1">
+              <i class="ri-github-fill"></i> KlevVid1
+            </a>
+          </div>
         </div>
-        <button class="default" id="btnMore">Подробнее →</button>
+        <div class="contacts-actions">
+          <a href="https://github.com/KlevVid1" target="_blank" rel="noopener noreferrer" class="github-btn" title="Перейти на GitHub (KlevVid1)">
+            <i class="ri-github-fill"></i>
+            <span>GitHub</span>
+          </a>
+          <button class="default" id="btnMore">Подробнее →</button>
+        </div>
       </div>
 
     </div><div class="panel-more" id="panelMore">
