@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>KlevVid</title>
   <link rel="stylesheet" href="https://unpkg.com/7.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"/>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body { width: 100%; height: 100%; overflow: hidden; }
@@ -39,9 +40,14 @@
       border-color: rgba(160, 210, 255, 0.65);
       background: rgba(100, 170, 255, 0.20);
     }
-    .d-icon .emoji {
-      font-size: 28px;
-      filter: drop-shadow(0 2px 5px rgba(0,0,0,0.6));
+    .d-icon .d-icon-img {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 5px rgba(0,0,0,0.65));
+      pointer-events: none;
+      display: block;
+      margin-bottom: 2px;
     }
     .d-icon span {
       font-size: 11px;
@@ -67,6 +73,19 @@
 
     .main-window .title-bar {
       cursor: move;
+    }
+
+    .title-bar-text {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .title-bar-icon {
+      width: 16px;
+      height: 16px;
+      object-fit: contain;
+      pointer-events: none;
+      flex-shrink: 0;
     }
 
     .main-window .window-body {
@@ -119,6 +138,20 @@
     .main-window .status-bar p {
       font-size: 11px !important;
       color: rgba(160, 190, 240, 0.85) !important;
+    }
+    .status-bar-field {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 6px #22c55e;
+      display: inline-block;
+      flex-shrink: 0;
     }
 
     .main-window.minimized .window-body,
@@ -244,6 +277,41 @@
     }
     .trash-row:hover { background: rgba(60,100,200,0.25); }
     .trash-row:active { background: rgba(60,100,200,0.45); }
+
+    .file-cell {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .file-icon {
+      width: 16px;
+      height: 16px;
+      object-fit: contain;
+      pointer-events: none;
+      flex-shrink: 0;
+    }
+
+    .sidebar-row {
+      padding: 3px 6px;
+      cursor: default;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 2px;
+      transition: background 0.1s;
+    }
+    .sidebar-row:hover { background: rgba(60,100,200,0.2); }
+    .sidebar-row.active { background: rgba(60,100,200,0.25); }
+    .sidebar-icon {
+      width: 16px;
+      height: 16px;
+      object-fit: contain;
+      pointer-events: none;
+      flex-shrink: 0;
+    }
 
     .aero-dialog {
       box-shadow:
@@ -383,7 +451,7 @@
       cursor: default;
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
       text-shadow: 0 1px 2px rgba(0,0,0,0.7);
       white-space: nowrap;
       max-width: 200px;
@@ -402,6 +470,13 @@
         rgba(255,255,255,0.05) 100%);
       border-color: rgba(0,0,0,0.30);
       box-shadow: inset 0 1px 3px rgba(0,0,0,0.35);
+    }
+    .taskbar-btn-icon {
+      width: 16px;
+      height: 16px;
+      object-fit: contain;
+      pointer-events: none;
+      flex-shrink: 0;
     }
 
     .taskbar-tray {
@@ -513,7 +588,6 @@
       box-shadow: 0 0 18px rgba(0,80,200,0.5), 0 4px 12px rgba(0,0,0,0.7);
       background: linear-gradient(135deg, #0a1428, #1a3060);
       display: flex; align-items: center; justify-content: center;
-      font-size: 40px;
       flex-shrink: 0;
       position: relative;
       z-index: 1;
@@ -606,7 +680,7 @@
     .wmp-btns {
       display: flex;
       align-items: center;
-      gap: 2px;
+      gap: 3px;
     }
     .wmp-btns button {
       background: none !important;
@@ -622,6 +696,10 @@
       transition: color 0.1s, background 0.1s !important;
       padding: 0 !important;
     }
+    .wmp-btns button i {
+      font-size: 15px;
+      line-height: 1;
+    }
     .wmp-btns button:hover { color: #fff !important; background: rgba(255,255,255,0.08) !important; }
     .wmp-btns button:active { background: rgba(255,255,255,0.15) !important; }
 
@@ -635,6 +713,11 @@
         rgba(10,70,180,0.95)) !important;
       box-shadow: 0 0 10px rgba(40,120,255,0.5), inset 0 1px 0 rgba(255,255,255,0.3) !important;
     }
+    .wmp-btn-play i {
+      font-size: 18px !important;
+      line-height: 1;
+      color: #fff;
+    }
     .wmp-btn-play:hover {
       background: radial-gradient(circle at 40% 35%,
         rgba(100,180,255,0.95),
@@ -647,7 +730,7 @@
       align-items: center;
       gap: 4px;
     }
-    .wmp-vol-icon { font-size: 14px; color: #888; }
+    .wmp-vol-icon { font-size: 15px; color: #888; }
     .wmp-vol-wrap {
       width: 24px;
       height: 70px;
@@ -706,7 +789,7 @@
         top: auto !important;
       }
       .wmp-stage { min-height: 120px !important; padding: 14px 12px !important; }
-      .wmp-cover { width: 72px !important; height: 72px !important; font-size: 30px !important; }
+      .wmp-cover { width: 72px !important; height: 72px !important; }
       .wmp-vol { width: 80px !important; }
     }
   </style>
@@ -714,15 +797,27 @@
 <body>
 
 <div class="desktop-icons">
-  <div class="d-icon" ondblclick="openMyPC()" title="Мой компьютер"><div class="emoji">🖥️</div><span>Мой компьютер</span></div>
-  <div class="d-icon" ondblclick="openDocs()" title="Документы"><div class="emoji">📁</div><span>Документы</span></div>
-  <div class="d-icon" ondblclick="window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ','_blank')" title="Корзина"><div class="emoji">🗑️</div><span>Корзина</span></div>
+  <div class="d-icon" ondblclick="openMyPC()" title="Мой компьютер">
+    <img class="d-icon-img" src="https://cdn.jsdelivr.net/gh/B00merang-Artwork/Windows-7@master/filesystems/computer.png" alt="Мой компьютер"/>
+    <span>Мой компьютер</span>
+  </div>
+  <div class="d-icon" ondblclick="openDocs()" title="Документы">
+    <img class="d-icon-img" src="https://cdn.jsdelivr.net/gh/B00merang-Artwork/Windows-7@master/filesystems/folder-documents.png" alt="Документы"/>
+    <span>Документы</span>
+  </div>
+  <div class="d-icon" ondblclick="window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ','_blank')" title="Корзина">
+    <img class="d-icon-img" src="https://cdn.jsdelivr.net/gh/B00merang-Artwork/Windows-7@master/filesystems/gnome-fs-trash-empty.png" alt="Корзина"/>
+    <span>Корзина</span>
+  </div>
 </div>
 
 <div class="window glass active main-window" id="mainWindow" style="--w7-w-bg: #1a2d52;">
 
   <div class="title-bar" id="titleBar">
-    <div class="title-bar-text">🌐 klevvid.ru — Визитная карточка</div>
+    <div class="title-bar-text">
+      <img class="title-bar-icon" src="https://cdn.jsdelivr.net/gh/B00merang-Artwork/Windows-7@master/categories/gnome-globe.png" alt=""/>
+      <span>klevvid.ru — Визитная карточка</span>
+    </div>
     <div class="title-bar-controls">
       <button aria-label="Minimize" id="btnMinimize"></button>
       <button aria-label="Maximize"></button>
@@ -852,7 +947,7 @@
 
         </div>
       </div></div></div><div class="status-bar">
-    <p class="status-bar-field">🟢 Онлайн</p>
+    <p class="status-bar-field"><span class="status-dot"></span> Онлайн</p>
     <p class="status-bar-field">klevvid.ru</p>
     <p class="status-bar-field" id="statusClock">00:00</p>
   </div>
@@ -860,7 +955,10 @@
 </div>
 <div class="window glass active player-window" id="playerWindow" style="--w7-w-bg: #111;">
   <div class="title-bar" id="playerTitleBar">
-    <div class="title-bar-text">▶ Windows Media Player</div>
+    <div class="title-bar-text">
+      <img class="title-bar-icon" src="https://cdn.jsdelivr.net/gh/visnalize/resources/icons/win7/Windows%20Media%20Player/wmplayer_120.ico" alt=""/>
+      <span>Windows Media Player</span>
+    </div>
     <div class="title-bar-controls">
       <button aria-label="Minimize" id="playerMinimize"></button>
       <button aria-label="Maximize"></button>
@@ -872,7 +970,7 @@
     <div class="wmp-stage" id="wmpStage">
       <div class="wmp-cover" id="playerCover">
         <img src="" id="playerCoverImg" style="display:none" alt="">
-        <span id="playerCoverFallback">🎵</span>
+        <img id="playerCoverFallback" src="https://cdn.jsdelivr.net/gh/visnalize/resources/icons/win7/Windows%20Media%20Player/wmplayer_120.ico" alt="" style="width:52px;height:52px;object-fit:contain;filter:drop-shadow(0 2px 8px rgba(0,80,200,0.6));">
       </div>
       <div class="wmp-track-info">
         <div class="wmp-title" id="playerTitle">Нет трека</div>
@@ -888,13 +986,13 @@
       </div>
       <div class="wmp-bottom-row">
         <div class="wmp-btns">
-          <button id="btnPrev" title="Предыдущий">⏮</button>
-          <button id="btnPlay" class="wmp-btn-play" title="Играть">▶</button>
-          <button id="btnNext" title="Следующий">⏭</button>
-          <button id="btnStop" title="Стоп">⏹</button>
+          <button id="btnPrev" title="Предыдущий"><i class="ri-skip-back-fill"></i></button>
+          <button id="btnPlay" class="wmp-btn-play" title="Играть"><i id="btnPlayIcon" class="ri-play-fill" style="margin-left:2px;"></i></button>
+          <button id="btnNext" title="Следующий"><i class="ri-skip-forward-fill"></i></button>
+          <button id="btnStop" title="Стоп"><i class="ri-stop-fill"></i></button>
         </div>
         <div class="wmp-vol-row">
-          <span class="wmp-vol-icon">🔈</span>
+          <i class="ri-volume-down-fill wmp-vol-icon"></i>
           <div class="wmp-vol-wrap">
             <input type="range" class="wmp-vol" id="playerVolume" value="80" min="0" max="100">
           </div>
@@ -909,7 +1007,10 @@
   <div class="window glass active aero-dialog" id="docsDialog" style="position:absolute;width:560px;--w7-w-bg:#1a2d52;animation:windowIn 0.2s cubic-bezier(0.22,1,0.36,1) both;">
 
     <div class="title-bar" id="docsTitleBar" style="cursor:move;">
-      <div class="title-bar-text">📄 Документы</div>
+      <div class="title-bar-text">
+        <img class="title-bar-icon" src="https://cdn.jsdelivr.net/gh/B00merang-Artwork/Windows-7@master/filesystems/folder-documents.png" alt=""/>
+        <span>Документы</span>
+      </div>
       <div class="title-bar-controls">
         <button aria-label="Minimize" onclick="docsMin()"></button>
         <button aria-label="Maximize"></button>
@@ -926,10 +1027,11 @@
     </div>
 
     <div style="background:rgba(15,20,40,0.7);backdrop-filter:blur(8px);border-bottom:1px solid rgba(60,90,160,0.3);padding:4px 8px;display:flex;align-items:center;gap:6px;">
-      <button class="aero-dialog-btn" style="font-size:11px;padding:1px 8px;">◀</button>
-      <button class="aero-dialog-btn" style="font-size:11px;padding:1px 8px;">▶</button>
-      <div style="flex:1;background:rgba(10,15,35,0.8);border:1px solid rgba(60,100,180,0.5);border-radius:2px;padding:2px 8px;font-size:12px;color:rgba(180,210,255,0.85);font-family:monospace;">
-        📄 Документы
+      <button class="aero-dialog-btn" style="font-size:12px;padding:2px 6px;display:inline-flex;align-items:center;justify-content:center;"><i class="ri-arrow-left-s-line"></i></button>
+      <button class="aero-dialog-btn" style="font-size:12px;padding:2px 6px;display:inline-flex;align-items:center;justify-content:center;"><i class="ri-arrow-right-s-line"></i></button>
+      <div style="flex:1;background:rgba(10,15,35,0.8);border:1px solid rgba(60,100,180,0.5);border-radius:2px;padding:2px 8px;font-size:12px;color:rgba(180,210,255,0.85);font-family:monospace;display:flex;align-items:center;gap:6px;">
+        <img src="https://cdn.jsdelivr.net/gh/B00merang-Artwork/Windows-7@master/filesystems/folder-documents.png" style="width:14px;height:14px;object-fit:contain;" alt=""/>
+        <span>Документы</span>
       </div>
       <button class="aero-dialog-btn" style="font-size:11px;padding:1px 10px;">Поиск</button>
     </div>
@@ -944,12 +1046,12 @@
 
       <div style="width:140px;flex-shrink:0;border-right:1px solid rgba(60,90,160,0.3);padding:8px 6px;font-size:11px;color:rgba(140,170,220,0.8);">
         <div style="margin-bottom:6px;color:rgba(160,200,255,0.6);font-weight:bold;font-size:10px;text-transform:uppercase;letter-spacing:1px;">Избранное</div>
-        <div style="padding:3px 6px;cursor:default;">🖥️ Рабочий стол</div>
-        <div style="padding:3px 6px;cursor:default;">📥 Загрузки</div>
-        <div style="padding:3px 6px;cursor:default;background:rgba(60,100,200,0.25);border-radius:2px;">📄 Документы</div>
+        <div class="sidebar-row"><img class="sidebar-icon" src="https://cdn.jsdelivr.net/gh/B00merang-Artwork/Windows-7@master/filesystems/folder-desktop.png" alt=""/> Рабочий стол</div>
+        <div class="sidebar-row"><img class="sidebar-icon" src="https://cdn.jsdelivr.net/gh/B00merang-Artwork/Windows-7@master/filesystems/folder-download.png" alt=""/> Загрузки</div>
+        <div class="sidebar-row active"><img class="sidebar-icon" src="https://cdn.jsdelivr.net/gh/B00merang-Artwork/Windows-7@master/filesystems/folder-documents.png" alt=""/> Документы</div>
         <div style="margin-top:8px;margin-bottom:6px;color:rgba(160,200,255,0.6);font-weight:bold;font-size:10px;text-transform:uppercase;letter-spacing:1px;">Компьютер</div>
-        <div style="padding:3px 6px;cursor:default;">💾 Диск (C:)</div>
-        <div style="padding:3px 6px;cursor:default;">💾 Диск (D:)</div>
+        <div class="sidebar-row"><img class="sidebar-icon" src="https://cdn.jsdelivr.net/gh/B00merang-Artwork/Windows-7@master/devices/drive-harddisk.png" alt=""/> Диск (C:)</div>
+        <div class="sidebar-row"><img class="sidebar-icon" src="https://cdn.jsdelivr.net/gh/B00merang-Artwork/Windows-7@master/devices/drive-harddisk.png" alt=""/> Диск (D:)</div>
       </div>
 
       <div style="flex:1;padding:6px 4px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(60,100,180,0.7) rgba(15,20,40,0.6);">
@@ -959,23 +1061,23 @@
         </div>
 
         <div class="trash-row" ondblclick="openFileError('волгоград','НЕТ ДОСТУПА\n\nAccess is denied.\n\nВолгоград 2023\n\nОтказано в доступе к папке.')">
-          <span>📁 Волгоград 2023</span><span>Папка</span><span>—</span><span>13.04.2023</span>
+          <span class="file-cell"><img class="file-icon" src="https://cdn.jsdelivr.net/gh/B00merang-Artwork/Windows-7@master/filesystems/folder.png" alt=""/> Волгоград 2023</span><span>Папка</span><span>—</span><span>13.04.2023</span>
         </div>
         <div class="trash-row" ondblclick="openFileError('ростов','НЕТ ДОСТУПА\n\nAccess is denied.\n\nРостов\n\nОтказано в доступе к папке.')">
-          <span>📁 Ростов</span><span>Папка</span><span>—</span><span>07.09.2024</span>
+          <span class="file-cell"><img class="file-icon" src="https://cdn.jsdelivr.net/gh/B00merang-Artwork/Windows-7@master/filesystems/folder.png" alt=""/> Ростов</span><span>Папка</span><span>—</span><span>07.09.2024</span>
         </div>
         <div class="trash-row" ondblclick="openDomashka()">
-          <span>📁 Домашка</span><span>Папка</span><span>1 488 ТБ</span><span>01.09.2025</span>
+          <span class="file-cell"><img class="file-icon" src="https://cdn.jsdelivr.net/gh/B00merang-Artwork/Windows-7@master/filesystems/folder.png" alt=""/> Домашка</span><span>Папка</span><span>1 488 ТБ</span><span>01.09.2025</span>
         </div>
 
         <div class="trash-row" ondblclick="openFileError('база','НЕТ ДОСТУПА\n\nAccess is denied.\n\nПроект «БАЗА».py\n\nОтказано в доступе к файлу.')">
-          <span>🐍 Проект «БАЗА».py</span><span>.py</span><span id="sizeBase">...</span><span>вчера</span>
+          <span class="file-cell"><img class="file-icon" src="https://cdn.jsdelivr.net/gh/B00merang-Artwork/Windows-7@master/mimetypes/gnome-mime-application-x-python-bytecode.png" alt=""/> Проект «БАЗА».py</span><span>.py</span><span id="sizeBase">...</span><span>вчера</span>
         </div>
         <div class="trash-row" ondblclick="openFileError('паспорт','НЕТ ДОСТУПА\n\nAccess is denied.\n\nскан паспорта.jpg\n\nОтказано в доступе к файлу.')">
-          <span>🖼️ скан паспорта.jpg</span><span>.jpg</span><span id="sizePasport">...</span><span>давно</span>
+          <span class="file-cell"><img class="file-icon" src="https://cdn.jsdelivr.net/gh/B00merang-Artwork/Windows-7@master/mimetypes/gnome-mime-image-jpeg.png" alt=""/> скан паспорта.jpg</span><span>.jpg</span><span id="sizePasport">...</span><span>давно</span>
         </div>
         <div class="trash-row" ondblclick="openFileError('реквизиты','НЕТ ДОСТУПА\n\nAccess is denied.\n\nреквизиты.txt\n\nОтказано в доступе к файлу.')">
-          <span>📄 реквизиты.txt</span><span>.txt</span><span id="sizeReq">...</span><span>никогда</span>
+          <span class="file-cell"><img class="file-icon" src="https://cdn.jsdelivr.net/gh/B00merang-Artwork/Windows-7@master/mimetypes/txt.png" alt=""/> реквизиты.txt</span><span>.txt</span><span id="sizeReq">...</span><span>никогда</span>
         </div>
 
       </div>
@@ -992,7 +1094,10 @@
 <div id="trashOverlay" style="display:none;position:fixed;inset:0;z-index:9996;background:transparent;">
   <div class="window glass active aero-dialog" id="trashDialog" style="position:absolute;width:420px;--w7-w-bg:#1a2d52;animation:windowIn 0.2s cubic-bezier(0.22,1,0.36,1) both;">
     <div class="title-bar" id="trashTitleBar" style="cursor:move;">
-      <div class="title-bar-text">🗑️ Корзина</div>
+      <div class="title-bar-text">
+        <img class="title-bar-icon" src="https://cdn.jsdelivr.net/gh/B00merang-Artwork/Windows-7@master/filesystems/gnome-fs-trash-empty.png" alt=""/>
+        <span>Корзина</span>
+      </div>
       <div class="title-bar-controls">
         <button aria-label="Minimize"></button>
         <button aria-label="Maximize"></button>
@@ -1006,7 +1111,7 @@
     </div>
     <div class="window-body aero-dialog-body" style="min-height:140px;display:flex;align-items:center;justify-content:center;">
       <div style="text-align:center;color:rgba(140,170,220,0.6);font-size:13px;">
-        <div style="font-size:42px;margin-bottom:10px;">🗑️</div>
+        <img src="https://cdn.jsdelivr.net/gh/B00merang-Artwork/Windows-7@master/filesystems/gnome-fs-trash-empty.png" style="width:52px;height:52px;object-fit:contain;display:block;margin:0 auto 10px;" alt=""/>
         Корзина пуста<br>
         <span style="font-size:11px;opacity:0.6;">А ты зачем сюда зашёл?</span>
       </div>
@@ -1018,7 +1123,10 @@
 <div id="subFolderOverlay" style="display:none;position:fixed;inset:0;z-index:10000;background:transparent;">
   <div class="window glass active aero-dialog" id="subFolderDialog" style="position:absolute;width:380px;--w7-w-bg:#1a2d52;animation:windowIn 0.18s cubic-bezier(0.22,1,0.36,1) both;">
     <div class="title-bar" id="subFolderTitleBar" style="cursor:move;">
-      <div class="title-bar-text" id="subFolderTitle">📁 Папка</div>
+      <div class="title-bar-text">
+        <img class="title-bar-icon" src="https://cdn.jsdelivr.net/gh/B00merang-Artwork/Windows-7@master/filesystems/folder.png" alt=""/>
+        <span id="subFolderTitle">Папка</span>
+      </div>
       <div class="title-bar-controls">
         <button aria-label="Close" onclick="closeSubFolder()"></button>
       </div>
@@ -1030,7 +1138,7 @@
     </div>
     <div class="window-body aero-dialog-body" style="min-height:120px;display:flex;align-items:center;justify-content:center;">
       <div style="text-align:center;color:rgba(140,170,220,0.6);font-size:13px;">
-        <div style="font-size:36px;margin-bottom:8px;">📭</div>
+        <img src="https://cdn.jsdelivr.net/gh/B00merang-Artwork/Windows-7@master/filesystems/gnome-fs-directory-docs.png" style="width:48px;height:48px;object-fit:contain;display:block;margin:0 auto 8px;" alt=""/>
         Папка пуста
       </div>
     </div>
@@ -1041,7 +1149,10 @@
 <div id="domashkaOverlay" style="display:none;position:fixed;inset:0;z-index:10000;background:transparent;">
   <div class="window glass active aero-dialog" id="domashkaDialog" style="position:absolute;width:400px;--w7-w-bg:#1a2d52;animation:windowIn 0.18s cubic-bezier(0.22,1,0.36,1) both;">
     <div class="title-bar" id="domashkaTitleBar" style="cursor:move;">
-      <div class="title-bar-text">📁 Домашка — Открытие...</div>
+      <div class="title-bar-text">
+        <img class="title-bar-icon" src="https://cdn.jsdelivr.net/gh/B00merang-Artwork/Windows-7@master/filesystems/folder.png" alt=""/>
+        <span>Домашка — Открытие...</span>
+      </div>
       <div class="title-bar-controls">
         <button aria-label="Close" onclick="closeDomashka()"></button>
       </div>
@@ -1073,8 +1184,8 @@
     <div class="window-body aero-dialog-body" style="padding:16px 18px;">
       <div style="display:flex;align-items:flex-start;gap:14px;">
         <img src="https://win98icons.alexmeub.com/icons/png/msg_error-0.png"
-          onerror="this.outerHTML='<span style=\'font-size:36px\'>⛔</span>'"
-          width="36" height="36" style="flex-shrink:0;margin-top:2px;image-rendering:pixelated;">
+          onerror="this.src='https://cdn.jsdelivr.net/npm/remixicon@4.3.0/icons/System/close-circle-fill.svg'"
+          width="36" height="36" style="flex-shrink:0;margin-top:2px;image-rendering:pixelated;object-fit:contain;">
         <div style="flex:1;">
           <p id="fileErrorText" style="margin:0 0 14px;font-size:12px;line-height:1.65;color:rgba(190,210,245,0.9);white-space:pre-wrap;"></p>
           <div style="display:flex;justify-content:center;">
@@ -1089,7 +1200,10 @@
 <div id="mypcOverlay" style="display:none; position:fixed; inset:0; z-index:9997; background:transparent;" onclick="if(event.target===this)closeMyPC()">
   <div class="window glass active aero-dialog" id="mypcDialog" style="position:absolute; width:300px; --w7-w-bg: #1a2d52; animation: windowIn 0.18s cubic-bezier(0.22,1,0.36,1) both;">
     <div class="title-bar" id="mypcTitleBar" style="cursor:move;">
-      <div class="title-bar-text">🖥️ Мой компьютер</div>
+      <div class="title-bar-text">
+        <img class="title-bar-icon" src="https://cdn.jsdelivr.net/gh/B00merang-Artwork/Windows-7@master/filesystems/computer.png" alt=""/>
+        <span>Мой компьютер</span>
+      </div>
       <div class="title-bar-controls">
         <button aria-label="Close" onclick="closeMyPC()"></button>
       </div>
@@ -1148,7 +1262,7 @@ I use arch btw</pre>
     </div>
     <div class="window-body aero-dialog-body" style="padding:18px 20px 14px;">
       <div style="display:flex; align-items:center; gap:14px; margin-bottom:14px;">
-        <span style="font-size:42px; line-height:1;">🦊</span>
+        <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@latest/assets/svg/1f98a.svg" style="width:44px;height:44px;object-fit:contain;flex-shrink:0;" alt="Fox"/>
         <div>
           <div style="font-size:15px; font-weight:bold; margin-bottom:3px; color:rgba(200,225,255,0.95);">klevvid.ru</div>
           <div style="font-size:11px; color:rgba(140,170,220,0.8);">Версия 2.2.8 (сделано со скуки)</div>
@@ -1180,8 +1294,8 @@ I use arch btw</pre>
     <div class="window-body aero-dialog-body" style="padding:16px 18px;">
       <div style="display:flex; align-items:flex-start; gap:14px;">
         <img src="https://win98icons.alexmeub.com/icons/png/msg_error-0.png"
-          onerror="this.outerHTML='<span style=\'font-size:40px\'>⛔</span>'"
-          width="40" height="40" style="flex-shrink:0; margin-top:2px; image-rendering:pixelated;">
+          onerror="this.src='https://cdn.jsdelivr.net/npm/remixicon@4.3.0/icons/System/close-circle-fill.svg'"
+          width="40" height="40" style="flex-shrink:0; margin-top:2px; image-rendering:pixelated; object-fit:contain;">
         <div style="flex:1;">
           <p style="margin:0 0 10px; font-size:13px; line-height:1.55; color:rgba(190,210,245,0.9);">
             <strong style="color:rgba(200,225,255,0.95);">Меню «Пуск» недоступно.</strong><br><br>
@@ -1220,7 +1334,7 @@ I use arch btw</pre>
   gap:10px;
   animation:toastIn 0.3s cubic-bezier(0.22,1,0.36,1) both;
 ">
-  <span style="font-size:22px;flex-shrink:0;">📱</span>
+  <img src="https://cdn.jsdelivr.net/gh/B00merang-Artwork/Windows-7@master/devices/gnome-dev-phone.png" style="width:24px;height:24px;object-fit:contain;flex-shrink:0;" alt="Телефон"/>
   <span style="font-size:12px;line-height:1.5;color:rgba(190,215,255,0.9);flex:1;">
     Настоятельно рекомендую перевернуть телефон, если этого не сделать некоторые интерактивные элементы могут не работать корректно.
   </span>
@@ -1233,7 +1347,7 @@ I use arch btw</pre>
     flex-shrink:0;
     padding:0 2px;
     line-height:1;
-  ">✕</button>
+  "><i class="ri-close-line"></i></button>
 </div>
 
 <style>
@@ -1255,11 +1369,13 @@ I use arch btw</pre>
   </button>
 
   <div class="taskbar-btn" id="taskbarBtn" onclick="toggleWindow()">
-    🌐 klevvid.ru
+    <img class="taskbar-btn-icon" src="https://cdn.jsdelivr.net/gh/B00merang-Artwork/Windows-7@master/categories/gnome-globe.png" alt=""/>
+    <span>klevvid.ru</span>
   </div>
 
   <div class="taskbar-btn" id="taskbarBtnPlayer" onclick="togglePlayer()">
-    🎵 Media Player
+    <img class="taskbar-btn-icon" src="https://cdn.jsdelivr.net/gh/visnalize/resources/icons/win7/Windows%20Media%20Player/wmplayer_120.ico" alt=""/>
+    <span>Media Player</span>
   </div>
 
   <div class="taskbar-tray">
@@ -1315,9 +1431,9 @@ I use arch btw</pre>
     document.addEventListener('mouseup',()=>{drag=false;});
   })();
 
-  const subNames = { volgograd:'📁 Волгоград 2023', rostov:'📁 Ростов' };
+  const subNames = { volgograd:'Волгоград 2023', rostov:'Ростов' };
   function openSubFolder(id) {
-    document.getElementById('subFolderTitle').textContent = subNames[id] || '📁 Папка';
+    document.getElementById('subFolderTitle').textContent = subNames[id] || 'Папка';
     const dlg = document.getElementById('subFolderDialog');
     document.getElementById('subFolderOverlay').style.display = 'block';
     requestAnimationFrame(()=>{
@@ -1357,7 +1473,6 @@ I use arch btw</pre>
     });
     clearInterval(domashkaTimer);
     domashkaTimer = setInterval(()=>{
-      // Прогресс ползёт до ~12% и сбрасывается обратно к 0 — никогда не доходит
       domashkaProgress += (Math.random() * 0.4);
       if (domashkaProgress >= 12) { domashkaProgress = 0; }
       document.getElementById('domashkaBar').style.width = domashkaProgress + '%';
@@ -1628,20 +1743,30 @@ I use arch btw</pre>
       coverFall.style.display = 'none';
     } else {
       coverImg.style.display = 'none';
-      coverFall.style.display = 'flex';
+      coverFall.style.display = 'block';
     }
   }
 
   function play() {
     audio.play().catch(() => {});
     isPlaying = true;
-    btnPlay.textContent = '⏸';
+    const pIcon = document.getElementById('btnPlayIcon');
+    if (pIcon) {
+      pIcon.className = 'ri-pause-fill';
+      pIcon.style.marginLeft = '0px';
+    }
+    btnPlay.title = 'Пауза';
     playerWin.classList.add('playing');
   }
   function pause() {
     audio.pause();
     isPlaying = false;
-    btnPlay.textContent = '▶';
+    const pIcon = document.getElementById('btnPlayIcon');
+    if (pIcon) {
+      pIcon.className = 'ri-play-fill';
+      pIcon.style.marginLeft = '2px';
+    }
+    btnPlay.title = 'Играть';
     playerWin.classList.remove('playing');
   }
 
